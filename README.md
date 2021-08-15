@@ -29,21 +29,22 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/orcunbaslak/pvsyst-elevation">
+  <a href="https://github.com/orcunbaslak/pvmodule-el-deduplicator">
     <img src="https://github.com/orcunbaslak/solarian-datalogger/blob/master/images/solarian_logo.png?raw=true" alt="Logo" width="411" height="162">
   </a>
 
-  <h3 align="center">Solarian PVSYST Elevation Tool</h3>
+  <h3 align="center">Solarian PV Module EL Image Deduplication Tool</h3>
 
   <p align="center">
-    Solarian PVSYST elevation tool is a tool writter in Python that grabs the elevation profile of a 
-    location given the bottom left and top right coordinates. The CSV output file can directly be imported 
-    into PVSYST software. 
+    Solarian PV Module EL Image Deduplication Tools has been written using Python to address the duplicate
+    image issues at the PV module manufacturers where modules with different serial numbers have the same
+    EL image. This issue has been arised during our regular factory controls and we've developed a tool
+    to address it. 
     <br />
     <br />
-    <a href="https://github.com/orcunbaslak/pvsyst-elevation/issues">Report Bug</a>
+    <a href="https://github.com/orcunbaslak/pvmodule-el-deduplicator/issues">Report Bug</a>
     ·
-    <a href="https://github.com/orcunbaslak/pvsyst-elevation/issues">Request Feature</a>
+    <a href="https://github.com/orcunbaslak/pvmodule-el-deduplicator/issues">Request Feature</a>
   </p>
 </p>
 
@@ -71,16 +72,17 @@
 
 At Solarian, we are a team of engineers dedicated to offers services of engineering at an exceptional quality. We push our hardest in terms of engineering and analysis.
 
-3D terrain geometry is essential in simulating solar power plants to correctly simulate the shading and get to the correct results. This software pulls values from international elevation databases and provides the CSV file that PVSYST can import. Although this data is not very accurate; It can provide the engineer with sufficient inclination (general topology) of the area.
+In order to increase the PV module production quality; we do inspection of photovoltaic modules at the factories. One thing we also check at the factories is duplicate
+EL images. Some production facilities tend to use bad software that creates/uses same EL image for different serial numbers. In order to spot those issues we've developed the following code. This software simply checks for similar images using pre-trained MobileNet CNN.
 
 Please feel free to fork or send pull requests. Please keep the code as minimal as possible.
 
 ### Built With
-This project has been coded with Python 3 using OSGeo GDAL, elevation and GeoPy.
+This project has been coded with Python 3 using Tensorflow, imagededup and nmslib.
 * [Python](https://www.python.org/)
-* [gdal](https://github.com/OSGeo/gdal)
-* [elevation](https://github.com/bopen/elevation)
-* [geopy](https://github.com/geopy/geopy)
+* [tensorflow](https://github.com/tensorflow/tensorflow)
+* [imagededup](https://github.com/idealo/imagededup)
+* [nmslib](https://github.com/nmslib/nmslib)
 
 
 <!-- GETTING STARTED -->
@@ -98,33 +100,33 @@ sudo apt-get -y dist-upgrade
 sudo apt-get -y install git python3-distutils python3-dev curl unzip gdal-bin libgdal-dev build-essential
 sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 sudo python3 get-pip.py
-sudo pip3 install elevation rasterio fiona pandas gdal==2.4.0 geopy
+sudo pip3 install tensorflow imagededup pillow keras
 ```
 
 ### Installation
 
 1. Clone the repo (Change the directory if you want)
 ```sh
-git clone https://github.com/orcunbaslak/pvsyst-elevation /home/pi/pvsyst-elevation
+git clone https://github.com/orcunbaslak/pvmodule-el-deduplicator /home/pi/pvmodule-el-deduplicator
 ```
-2. Edit the python file `pvsyst-evelation.py` and insert coordinates.
+2. Edit the python file `deduplicate.py` and provide the path to the folder which holds the EL images.
 ```sh
-nano pvsyst-evelation.py
+nano deduplicate.py
 ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-You can feed the file to Python3 interpreter and it's all good to go given you've entered the correct coordinates. Please do check the comments in the python file.
+You can feed the file to Python3 interpreter and it's all good to go given you've entered the correct folder path. Please do check the comments in the python file.
 
 ```sh
-python3 pvsyst-elevation.py
+python3 deduplicate.py
 ```
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/orcunbaslak/pvsyst-evelation/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/orcunbaslak/pvmodule-el-deduplicator/issues) for a list of proposed features (and known issues).
 
 
 
@@ -144,7 +146,7 @@ Contributions are what make the open source community such an amazing place to b
 <!-- LICENSE -->
 ## License
 
-Distributed under the GNU GPL v3 License. See `LICENSE` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
@@ -153,20 +155,20 @@ Orçun Başlak - [@orcunbaslak](https://twitter.com/orcunbaslak) - [website](htt
 
 Solarian Enerji - [@solarianenerji](https://twitter.com/solarianenerji) - [website](https://www.solarian.com.tr/en/) - info@solarian.com.tr
 
-Project Link: [https://github.com/orcunbaslak/pvsyst-elevation](https://github.com/orcunbaslak/pvsyst-elevation)
+Project Link: [https://github.com/orcunbaslak/pvmodule-el-deduplicator](https://github.com/orcunbaslak/pvmodule-el-deduplicator)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/orcunbaslak/pvsyst-elevation.svg?style=flat-square
-[contributors-url]: https://github.com/orcunbaslak/pvsyst-elevation/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/orcunbaslak/pvsyst-elevation.svg?style=flat-square
-[forks-url]: https://github.com/orcunbaslak/pvsyst-elevation/network/members
-[stars-shield]: https://img.shields.io/github/stars/orcunbaslak/pvsyst-elevation.svg?style=flat-square
-[stars-url]: https://github.com/orcunbaslak/pvsyst-elevation/stargazers
-[issues-shield]: https://img.shields.io/github/issues/orcunbaslak/pvsyst-elevation.svg?style=flat-square
-[issues-url]: https://github.com/orcunbaslak/pvsyst-elevation/issues
-[license-shield]: https://img.shields.io/github/license/orcunbaslak/pvsyst-elevation.svg?style=flat-square
-[license-url]: https://github.com/orcunbaslak/pvsyst-elevation/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/orcunbaslak/pvmodule-el-deduplicator.svg?style=flat-square
+[contributors-url]: https://github.com/orcunbaslak/pvmodule-el-deduplicator/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/orcunbaslak/pvmodule-el-deduplicator.svg?style=flat-square
+[forks-url]: https://github.com/orcunbaslak/pvmodule-el-deduplicator/network/members
+[stars-shield]: https://img.shields.io/github/stars/orcunbaslak/pvmodule-el-deduplicator.svg?style=flat-square
+[stars-url]: https://github.com/orcunbaslak/pvmodule-el-deduplicator/stargazers
+[issues-shield]: https://img.shields.io/github/issues/orcunbaslak/pvmodule-el-deduplicator.svg?style=flat-square
+[issues-url]: https://github.com/orcunbaslak/pvmodule-el-deduplicator/issues
+[license-shield]: https://img.shields.io/github/license/orcunbaslak/pvmodule-el-deduplicator.svg?style=flat-square
+[license-url]: https://github.com/orcunbaslak/pvmodule-el-deduplicator/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/orcunbaslak

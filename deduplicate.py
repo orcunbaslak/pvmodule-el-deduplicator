@@ -6,6 +6,7 @@ from imagededup.methods import CNN
 image_path = '/mnt/c/Users/orcun/duplicateELs'
 
 #Similarity treshold
+#You need to play with the similarity threshold to achieve correct values. It varies from system to system.
 sim_threshold = 0.999
 
 # First create the image encodings for CNN

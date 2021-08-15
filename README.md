@@ -92,12 +92,12 @@ Follow the steps below to prepare the environment for the project.
 
 ### Prerequisites
 
-First you need to get Python 3 installed and running with dependencies correctly installed. Please check your system-wide installed GDal version and install the same version for python.
+First you need to get Python 3 installed and running with dependencies correctly installed. 
 * bash
 ```sh
 sudo apt update
 sudo apt-get -y dist-upgrade
-sudo apt-get -y install git python3-distutils python3-dev curl unzip gdal-bin libgdal-dev build-essential
+sudo apt-get -y install git python3-distutils python3-dev build-essential
 sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 sudo python3 get-pip.py
 sudo pip3 install tensorflow imagededup pillow keras
